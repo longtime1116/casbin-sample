@@ -1,22 +1,25 @@
 # adminはすべてwrite可能
+p, admin, .*, read
 p, admin, .*, write
 g, lh, admin
 
-p, shipowner1_rw, shipowner1/.*, write
-p, shipowner1_r, shipowner1/.*, read
-p, shipowner2_rw, shipowner2/.*, write
-p, shipowner2_r, shipowner2/.*, read
+p, factoryowner1_rw, factoryowner1/.*, read
+p, factoryowner1_rw, factoryowner1/.*, write
+p, factoryowner1_r, factoryowner1/.*, read
+p, factoryowner2_rw, factoryowner2/.*, read
+p, factoryowner2_rw, factoryowner2/.*, write
+p, factoryowner2_r, factoryowner2/.*, read
 
-# manufacture1 は shipowner1 だけ関係を持つ
-g, manufacture1_manager, shipowner1_rw
-g, manufacture1_employee, shipowner1_r
+# manufacture1 は factoryowner1 だけ関係を持つ
+g, manufacture1_manager, factoryowner1_rw
+g, manufacture1_employee, factoryowner1_r
 
-# manufacture2 は shipowner1/shipowner2 の2つと関係を持つ
-g, manufacture2_manager, shipowner1_rw
-g, manufacture2_manager, shipowner2_rw
-g, manufacture2_employee, shipowner1_r
-g, manufacture2_employee, shipowner2_r
+# manufacture2 は factoryowner1/factoryowner2 の2つと関係を持つ
+g, manufacture2_manager, factoryowner1_rw
+g, manufacture2_manager, factoryowner2_rw
+g, manufacture2_employee, factoryowner1_r
+g, manufacture2_employee, factoryowner2_r
 
-# partner1はshipowner1とshipowner1/ship1/equipment1だけ見れる
-p, partner1, ^shipowner1$, read
-p, partner1, ^shipowner1/ship1/equipment1$, read
+# partner1はfactoryowner1とfactoryowner1/factory1/equipment1だけ見れる
+p, partner1, ^factoryowner1$, read
+p, partner1, ^factoryowner1/factory1/equipment1$, read

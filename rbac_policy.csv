@@ -1,7 +1,39 @@
-p, admin, data1, read
-p, admin, data1, write
-p, admin, data2, read
-p, admin, data2, write
-p, alice, data3, read
-g, alice, admin
-p, bob, data3, read
+p, admin, shipowner1, read
+p, admin, shipowner1, write
+p, admin, shipowner1/ship1/equipment1, read
+p, admin, shipowner1/ship1/equipment1, write
+p, admin, shipowner1/ship1/equipment2, read
+p, admin, shipowner1/ship1/equipment2, write
+p, admin, shipowner2, read
+p, admin, shipowner2, write
+p, admin, shipowner2/ship1/equipment1, read
+p, admin, shipowner2/ship1/equipment1, write
+p, admin, shipowner2/ship1/equipment2, read
+p, admin, shipowner2/ship1/equipment2, write
+g, lh, admin
+
+p, shipowner1_rw, shipowner1, read
+p, shipowner1_rw, shipowner1, write
+p, shipowner1_rw, shipowner1/ship1/equipment1, read
+p, shipowner1_rw, shipowner1/ship1/equipment1, write
+p, shipowner1_rw, shipowner1/ship1/equipment2, read
+p, shipowner1_rw, shipowner1/ship1/equipment2, write
+p, shipowner1_r, shipowner1, read
+p, shipowner1_r, shipowner1/ship1/equipment1, read
+p, shipowner1_r, shipowner1/ship1/equipment2, read
+g, manufacture1_manager, shipowner1_rw
+g, manufacture1_employee, shipowner1_r
+
+p, shipowner2_rw, shipowner2, read
+p, shipowner2_rw, shipowner2, write
+p, shipowner2_rw, shipowner2/ship1/equipment1, read
+p, shipowner2_rw, shipowner2/ship1/equipment1, write
+p, shipowner2_rw, shipowner2/ship1/equipment2, read
+p, shipowner2_rw, shipowner2/ship1/equipment2, write
+p, shipowner2_r, shipowner2, read
+p, shipowner2_r, shipowner2/ship1/equipment1, read
+p, shipowner2_r, shipowner2/ship1/equipment2, read
+g, manufacture2_manager, shipowner1_rw
+g, manufacture2_employee, shipowner1_r
+g, manufacture2_manager, shipowner2_rw
+g, manufacture2_employee, shipowner2_r

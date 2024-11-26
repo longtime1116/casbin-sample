@@ -32,16 +32,17 @@ func main() {
 	}
 
 	// アクセスチェック
-	checkAccess(e, "alice", "data1", "read")
-	checkAccess(e, "alice", "data1", "write")
-	checkAccess(e, "alice", "data2", "read")
-	checkAccess(e, "alice", "data2", "write")
-	checkAccess(e, "alice", "data3", "read")
-	checkAccess(e, "alice", "data3", "write")
-	checkAccess(e, "bob", "data1", "read")
-	checkAccess(e, "bob", "data1", "write")
-	checkAccess(e, "bob", "data3", "read")
-	checkAccess(e, "bob", "data3", "write")
+	checkAccess(e, "lh", "shipowner1/ship1/equipment1", "read")
+	checkAccess(e, "lh", "shipowner1/ship1/equipment1", "write")
+	fmt.Println("---- manufacture1はshipowner1のみアクセス可能")
+	checkAccess(e, "manufacture1_manager", "shipowner1/ship1/equipment1", "write")
+	checkAccess(e, "manufacture1_manager", "shipowner2/ship1/equipment1", "write")
+	fmt.Println("---- manufacture2 は shipowner1 も shipowner2 もアクセス可能")
+	checkAccess(e, "manufacture2_manager", "shipowner1/ship1/equipment1", "write")
+	checkAccess(e, "manufacture2_manager", "shipowner2/ship1/equipment1", "write")
+	fmt.Println("---- employeeはreadのみ")
+	checkAccess(e, "manufacture1_employee", "shipowner1/ship1/equipment1", "read")
+	checkAccess(e, "manufacture1_employee", "shipowner1/ship1/equipment1", "write")
 }
 
 // アクセスをチェックするヘルパー関数

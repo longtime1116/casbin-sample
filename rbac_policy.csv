@@ -1,39 +1,22 @@
-p, admin, shipowner1, read
-p, admin, shipowner1, write
-p, admin, shipowner1/ship1/equipment1, read
-p, admin, shipowner1/ship1/equipment1, write
-p, admin, shipowner1/ship1/equipment2, read
-p, admin, shipowner1/ship1/equipment2, write
-p, admin, shipowner2, read
-p, admin, shipowner2, write
-p, admin, shipowner2/ship1/equipment1, read
-p, admin, shipowner2/ship1/equipment1, write
-p, admin, shipowner2/ship1/equipment2, read
-p, admin, shipowner2/ship1/equipment2, write
+# adminはすべてwrite可能
+p, admin, .*, write
 g, lh, admin
 
-p, shipowner1_rw, shipowner1, read
-p, shipowner1_rw, shipowner1, write
-p, shipowner1_rw, shipowner1/ship1/equipment1, read
-p, shipowner1_rw, shipowner1/ship1/equipment1, write
-p, shipowner1_rw, shipowner1/ship1/equipment2, read
-p, shipowner1_rw, shipowner1/ship1/equipment2, write
-p, shipowner1_r, shipowner1, read
-p, shipowner1_r, shipowner1/ship1/equipment1, read
-p, shipowner1_r, shipowner1/ship1/equipment2, read
+p, shipowner1_rw, shipowner1/.*, write
+p, shipowner1_r, shipowner1/.*, read
+p, shipowner2_rw, shipowner2/.*, write
+p, shipowner2_r, shipowner2/.*, read
+
+# manufacture1 は shipowner1 だけ関係を持つ
 g, manufacture1_manager, shipowner1_rw
 g, manufacture1_employee, shipowner1_r
 
-p, shipowner2_rw, shipowner2, read
-p, shipowner2_rw, shipowner2, write
-p, shipowner2_rw, shipowner2/ship1/equipment1, read
-p, shipowner2_rw, shipowner2/ship1/equipment1, write
-p, shipowner2_rw, shipowner2/ship1/equipment2, read
-p, shipowner2_rw, shipowner2/ship1/equipment2, write
-p, shipowner2_r, shipowner2, read
-p, shipowner2_r, shipowner2/ship1/equipment1, read
-p, shipowner2_r, shipowner2/ship1/equipment2, read
+# manufacture2 は shipowner1/shipowner2 の2つと関係を持つ
 g, manufacture2_manager, shipowner1_rw
-g, manufacture2_employee, shipowner1_r
 g, manufacture2_manager, shipowner2_rw
+g, manufacture2_employee, shipowner1_r
 g, manufacture2_employee, shipowner2_r
+
+# partner1はshipowner1とshipowner1/ship1/equipment1だけ見れる
+p, partner1, ^shipowner1$, read
+p, partner1, ^shipowner1/ship1/equipment1$, read
